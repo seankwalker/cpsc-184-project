@@ -1,0 +1,5 @@
+# this file is here so the `data` directory still remains in Git so the
+# project's directory structure is preserved, but without actually uploading
+# data files to GitHub
+*
+!.gitignore
