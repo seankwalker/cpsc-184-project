@@ -10,24 +10,17 @@
 """
 
 
-import csv
 import os
 
 import numpy as np
 import pandas as pd
 
 DATA_DIR = "data"
-DATA_FILE = "patent.tsv"
+DATA_FILE = "patent-clean.tsv"
 PICKLE_FILE = "patent.pkl"
 
 
-def label_year(row):
-    """
-    Extract the year a specific patent was granted.
-    """
-    return int(row["date"][:4])
-
-def main():
+def run():
     """
     Main funciton.
     """
@@ -41,7 +34,7 @@ def main():
     # see if Pickle file of patents data frame already exists
     print("checking for pre-existing dataframe file...", end="")
     if os.path.isfile(os.path.join(DATA_DIR, PICKLE_FILE)):
-        print("found! reading dataframe from file...", end="")
+        print("found!\nreading dataframe from file...", end="")
         df = pd.read_pickle(os.path.join(DATA_DIR, PICKLE_FILE))
         print("done.")
     else:
@@ -49,13 +42,13 @@ def main():
         # read in patent data from source file, skipping any misformatted lines
         df = pd.read_csv(
                 os.path.join(DATA_DIR, DATA_FILE),
+                date_parser=lambda x: pd.datetime.strptime(x, "%Y-%m-%d"),
                 error_bad_lines=False,
-                sep="\t"
+                index=["date"],
+                parse_dates=["date"],
+                sep="\t",
+                usecols=["id", "date", "abstract"]
         )
-
-        # add an `int`-type "year" column
-        print("done. classifying by year...", end="")
-        df.apply(label_year, axis=1)
 
         # save data frame to Pickle for speed (on subsequent runs)
         print("done. saving dataframe to file...", end="")
@@ -63,6 +56,5 @@ def main():
         print(f"done; dataframe saved to {os.path.join(DATA_DIR, PICKLE_FILE)}")
 
 
-
 if __name__ == "__main__":
-    main()
+    run()

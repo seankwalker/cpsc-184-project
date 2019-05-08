@@ -30,3 +30,11 @@ random sample of 20% of the cases in the full database. It is available for
 download at 
 [their website](https://law.stanford.edu/projects/stanford-npe-litigation-database/)
 .
+
+### Requirements
+
+```
+nltk
+pandas
+pyphen
+```
