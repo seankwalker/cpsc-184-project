@@ -39,7 +39,8 @@ def run():
         for row in reader:
             if (not row["abstract"] or row["abstract"] == "" or
                     row["abstract"].isspace() or row["abstract"] is np.nan or
-                    row["abstract"] != row["abstract"]):
+                    row["abstract"] != row["abstract"] or
+                    len(row["abstract"]) < 10):
                 print(f"skipping malformed abstract ({row['abstract']})...")
                 continue
             

@@ -38,15 +38,14 @@ def main():
 
     # load dataframe, grouped by year
     df = pd.read_pickle(os.path.join(DATA_DIR, DATAFRAME_FILE))
+    print(f"size of data set before date filter: {df.size}")
 
     # filter from 2000 onward
-    _filter = df["date"] > "2015-12-21"
+    _filter = df["date"] > "1999-12-31"
     df = df.loc[_filter]
-    #print(df_sm)
-    print(df)
+    print(f"size of data set after date filter: {df.size}")
 
     # compute readability of all abstracts in data set
-
     df["readability"] = df.apply(calc_readability, axis=1)
 
     print(df.groupby(df.date.dt.year).mean())
