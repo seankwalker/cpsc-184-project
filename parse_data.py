@@ -44,7 +44,7 @@ def run():
                 os.path.join(DATA_DIR, DATA_FILE),
                 date_parser=lambda x: pd.datetime.strptime(x, "%Y-%m-%d"),
                 error_bad_lines=False,
-                index=["date"],
+                index_col=["date"],
                 parse_dates=["date"],
                 sep="\t",
                 usecols=["id", "date", "abstract"]
