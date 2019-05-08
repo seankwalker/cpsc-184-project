@@ -39,13 +39,17 @@ def main():
     # load dataframe, grouped by year
     df = pd.read_pickle(os.path.join(DATA_DIR, DATAFRAME_FILE))
 
+    # filter from 2000 onward
+    _filter = df["date"] > "2015-12-21"
+    df = df.loc[_filter]
+    #print(df_sm)
+    print(df)
+
     # compute readability of all abstracts in data set
-    # TODO: change this, but for now filter only patents from 2015 for speed
-    df_sm = df.loc["2015-01-01":"2015-12-31"]
 
-    df_sm["readability"] = df.apply(calc_readability, axis=1)
+    df["readability"] = df.apply(calc_readability, axis=1)
 
-    print(df_sm.groupby(df_sm.date.dt.year).mean())
+    print(df.groupby(df.date.dt.year).mean())
 
 if __name__ == "__main__":
     main()

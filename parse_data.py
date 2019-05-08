@@ -43,8 +43,8 @@ def run():
         df = pd.read_csv(
                 os.path.join(DATA_DIR, DATA_FILE),
                 date_parser=lambda x: pd.datetime.strptime(x, "%Y-%m-%d"),
+                dtype={"abstract": str},
                 error_bad_lines=False,
-                index_col=["date"],
                 parse_dates=["date"],
                 sep="\t",
                 usecols=["id", "date", "abstract"]

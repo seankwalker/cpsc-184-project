@@ -48,6 +48,15 @@ def calculate_fk_ease(text):
             num_syllables += len(hyph.inserted(word).split("-"))
 
     # calculate metric
+    if num_sentences == 0 or num_syllables == 0 or num_words == 0:
+        print("wtf? one of FK Readability parameters is 0...")
+        print(f"sentences: {num_sentences} | sylls: {num_syllables} |",
+                f"words: {num_words}")
+        print(f"text: {text}")
+        print(f"as hex: {':'.join('{:02x}'.format(ord(c)) for c in text)}")
+        print(f"test is None: {text is None} | text is == '': {(text == '')}",
+                f"| not text: {not text}")
+        return 100
     return 206.835 - (1.015 * (num_words / num_sentences)) - (84.6 * (num_syllables / num_words))
 
 
