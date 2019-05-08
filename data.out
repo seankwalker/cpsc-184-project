@@ -1,0 +1,25 @@
+checking for pre-existing dataframe file...found!
+reading dataframe from file...done.
+size of data set before date filter: 18676479
+size of data set after date filter: 12423873
+      readability
+date             
+2000    24.331705
+2001    24.250116
+2002    23.205761
+2003    23.451397
+2004    23.481210
+2005    24.419158
+2006    23.716361
+2007    23.008513
+2008    22.308101
+2009    21.644634
+2010    21.131080
+2011    20.039400
+2012    19.279927
+2013    18.804739
+2014    18.578520
+2015    18.419324
+2016    18.361424
+2017    17.932704
+2018    17.495761
